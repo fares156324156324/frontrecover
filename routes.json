@@ -1,0 +1,12 @@
+{
+  "/login": {
+    "auth": {
+      "roles": ["user", "admin"]
+    }
+  },
+  "/users": {
+    "auth": {
+      "roles": ["admin"]
+    }
+  }
+}

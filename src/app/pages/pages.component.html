@@ -1,0 +1,11 @@
+<nb-layout windowMode>
+  <nb-layout-header fixed>
+      <app-nav-bar [user]="currentUser" [menu]="menuNavBar" (deselectSideBar)="deselectSideBar()"></app-nav-bar>
+  </nb-layout-header>
+  <nb-sidebar class="menu-sidebar" tag="menu-sidebar" responsive>
+      <app-side-bar [menu]="menuSideBar"></app-side-bar>
+  </nb-sidebar>
+  <nb-layout-column>
+      <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>

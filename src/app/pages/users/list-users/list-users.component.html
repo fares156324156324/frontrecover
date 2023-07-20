@@ -1,0 +1,177 @@
+<nb-card [nbSpinner]="loading" class="full">
+  <nb-card-header>
+    Users List
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="isMobileView" class="row globalSearchTable mb-3">
+      <nb-form-field class="col-12">
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input nbInput fullWidth fieldSize="small" [(ngModel)]="globalSearch" (ngModelChange)="filterChange.next()">
+        <nb-icon icon="times" class="pointer" nbSuffix *ngIf="globalSearch.length >0" (click)="globalSearch='';getUsers()"></nb-icon>
+      </nb-form-field>
+    </div>
+    <div class="row mb-3">
+      <div class="col-6">
+        <app-pagination (rangeChanged)="eventEmitted($event)"></app-pagination>
+      </div>
+      <div class="col-6 text-right">
+        <button nbButton status="primary" (click)="addNewUser()" >
+          <nb-icon icon="plus-square"></nb-icon><span *ngIf="!isMobileView">New KPI</span>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ngx-table id="tableUsers" [configuration]="configuration" [data]="users" #tableUsers
+          [filtersTemplate]="isMobileView?filtersTemplateMobile:filtersTemplateWeb" [detailsTemplate]="detailsTemplate"
+          [columns]="columns" (event)="eventEmitted($event)" [pagination]="pagination"
+          [noResultsTemplate]="noResultsTemplate">
+          <ng-template let-row let-index="index">
+            <ng-container *ngIf="isMobileView">
+              <td>
+                <span title="{{row.getFullName()}}">{{row.getFullName()}}</span>
+              </td>
+              <td>
+                <button id="expandButton-{{index}}" nbButton hero status="info" size="small" class="pointer"
+                  (click)="showDetailsMobile($event,index)">
+                  Details
+                  <nb-icon [icon]="!toggledRows.has(index)?'chevron-right':'chevron-down'"></nb-icon>
+                </button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="!isMobileView">
+              <td class="pinned-left"
+              [ngStyle]="{'left': '1px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+              <span title="{{row.cin}}">{{row.cin}}</span>
+            </td>
+              <td class="pinned-left"
+                [ngStyle]="{'left': '1px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+                <span title="{{row.prenom}}">{{row.prenom}}</span>
+              </td>
+              <td class="pinned-left"
+                [ngStyle]="{'left': minMaxWidth+'px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+                <span title="{{row.nom}}">{{row.nom}}</span>
+              </td>
+              <td [ngStyle]="{'min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+                <span title="{{row.email}}">{{row.email}}</span>
+              </td>
+            </ng-container>
+            <td class="buttons">
+              <ng-container *ngIf="currentUser.id !== row.id">
+                <button nbButton outline status="info" size="small" (click)="onEditTableRow(index)" class="pointer m-1"
+                title="Edit">
+                <nb-icon icon="edit"></nb-icon>
+              </button>
+              <button nbButton outline status="danger" size="small" (click)="onDeleteTableRow(index)"
+                class="pointer m-1" title="Delete">
+                <nb-icon icon="trash"></nb-icon>
+              </button>
+              </ng-container>
+            </td>
+          </ng-template>
+        </ngx-table>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<ng-template #filtersTemplateMobile>
+  <th class="text-center">
+    <label>Full Name</label>
+  </th>
+  <th class="text-center">
+    <label>Details</label>
+  </th>
+  <th class="text-center">
+    <label>Actions</label>
+  </th>
+</ng-template>
+
+
+<ng-template #filtersTemplateWeb>
+  <ng-container *ngIf="!isMobileView">
+    <th class="pinned-left" [ngStyle]="{'left': '1px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+      <!-- <nb-form-field>
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input nbInput fullWidth fieldSize="small" [(ngModel)]="filterData.cin"
+          (ngModelChange)="filterChange.next()" placeholder="CIN">
+        <nb-icon icon="times" class="pointer" nbSuffix *ngIf="filterData.cin && filterData.cin.length>0"
+          (click)="filterData.cin='';getUsers()"></nb-icon>
+      </nb-form-field> -->
+    </th>
+    <th class="pinned-left" [ngStyle]="{'left': '1px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+      <!-- <nb-form-field>
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input nbInput fullWidth fieldSize="small" [(ngModel)]="filterData.prenom"
+          (ngModelChange)="filterChange.next()" placeholder="First Name">
+        <nb-icon icon="times" class="pointer" nbSuffix *ngIf="filterData.prenom && filterData.prenom.length>0"
+          (click)="filterData.prenom='';getUsers()"></nb-icon>
+      </nb-form-field> -->
+    </th>
+    <th class="pinned-left"
+      [ngStyle]="{'left': minMaxWidth+'px','min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+      <!-- <nb-form-field>
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input nbInput fullWidth fieldSize="small" [(ngModel)]="filterData.nom"
+          (ngModelChange)="filterChange.next()" placeholder="Last Name">
+        <nb-icon icon="times" class="pointer" nbSuffix *ngIf="filterData.nom && filterData.nom.length>0"
+          (click)="filterData.nom='';getUsers()"></nb-icon>
+      </nb-form-field> -->
+    </th>
+    <th [ngStyle]="{'min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+      <nb-form-field>
+        <nb-icon nbPrefix icon="search"></nb-icon>
+        <input nbInput fullWidth fieldSize="small" [(ngModel)]="filterData.email" (ngModelChange)="filterChange.next()"
+          placeholder="Email">
+        <nb-icon icon="times" class="pointer" nbSuffix *ngIf="filterData.email && filterData.email.length>0"
+          (click)="filterData.email='';getUsers()"></nb-icon>
+      </nb-form-field>
+    </th>
+    <th [ngStyle]="{'min-width':minMaxWidth+'px','max-width':minMaxWidth+'px'}">
+      <label>Actions</label>
+    </th>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #detailsTemplate let-row>
+  <div class="row">
+    <div class="col-6 mb-2 mt-2">
+      <b>CIN</b>
+    </div>
+    <div class="col-6 mb-2 mt-2">
+      <span>{{row.cin}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mb-2 mt-2">
+      <b>First Name</b>
+    </div>
+    <div class="col-6 mb-2 mt-2">
+      <span>{{row.prenom}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mb-2 mt-2">
+      <b>Last Name</b>
+    </div>
+    <div class="col-6 mb-2 mt-2">
+      <span>{{row.nom}}</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 mb-2 mt-2">
+      <b>Email</b>
+    </div>
+    <div class="col-6 mb-2 mt-2">
+      <span>{{row.email}}</span>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #noResultsTemplate>
+  <td [attr.colspan]="columns.length" class="no-results">
+    No Result
+  </td>
+</ng-template>

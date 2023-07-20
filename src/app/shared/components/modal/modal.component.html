@@ -1,0 +1,25 @@
+<div [class.d-none]="hide" class="modal-sm m-auto">
+    <nb-card [nbSpinner]="loading">
+      <nb-card-header class="d-flex">
+        <h4 class="modal-title w-100">{{ title }}</h4>
+        <nb-icon *ngIf="showTimes" class="align-self-center fa-1x pointer" icon="times" (click)="onSubmit(undefined)">
+        </nb-icon>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="modal-body">
+          <p [innerHTML]="body"></p>
+          <input *ngIf="withInput" [type]="inputType" [(ngModel)]="inputValue" nbInput autofocus fullWidth
+            fieldSize="large">
+        </div>
+      </nb-card-body>
+      <nb-card-footer class="d-inline-flex justify-content-center">
+        <button *ngIf="!onlyConfirm" nbButton status="danger" class="m-1" (click)="onSubmit(false)">
+          {{btnCancel }}
+        </button>
+        <button nbButton status="success" class="m-1" (click)="onSubmit(true)">
+          {{btnConfirm }}
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  

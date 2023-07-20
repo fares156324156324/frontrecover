@@ -1,0 +1,4 @@
+<nb-select [(selected)]="selectedItem" (selectedChange)="updateSelectedRange()">
+    <nb-select-label>{{ selectedItem }} </nb-select-label>
+    <nb-option *ngFor="let item of ranges" [value]="item"> {{ item }}</nb-option>
+  </nb-select>

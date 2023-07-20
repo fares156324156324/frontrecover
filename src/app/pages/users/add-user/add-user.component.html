@@ -1,0 +1,58 @@
+<div class="modal-lg m-auto">
+  <nb-card [nbSpinner]="loading">
+    <nb-card-header class="d-flex">
+      <h6 class="modal-title w-100"> Add New User</h6>
+      <nb-icon class="align-self-center fa-1x pointer" icon="times" (click)="dialogRef.close(undefined)">
+      </nb-icon>
+    </nb-card-header>
+    <nb-card-body>
+      <form (ngSubmit)="submit()" [formGroup]="userForm" class="row">
+        <div class="form-group col-md-6">
+          <input [tabIndex]="1" nbInput fullWidth formControlName="prenom" fieldSize="large" placeholder=" First Name"
+            [status]="userForm.controls['prenom'].touched ? userForm.controls['prenom'].invalid  ? 'danger' : 'success' :'basic'">
+          <ng-container *ngIf="userForm.controls['prenom'].touched && userForm.controls['prenom'].errors">
+            <p class="caption status-danger" *ngIf="userForm.controls['prenom'].errors?.['required']">
+              First Name is required.
+            </p>
+            <p class="caption status-danger"
+              *ngIf="userForm.controls['prenom'].errors?.['minlength'] || userForm.controls['prenom'].errors?.['maxlength']">
+              Error length First name.
+            </p>
+          </ng-container>
+        </div>
+        <div class="form-group col-md-6">
+          <input [tabIndex]="2" nbInput fullWidth formControlName="nom" fieldSize="large" placeholder=" Last Name"
+            [status]="userForm.controls['nom'].touched ? userForm.controls['nom'].invalid  ? 'danger' : 'success' :'basic'">
+          <ng-container *ngIf="userForm.controls['nom'].touched && userForm.controls['nom'].errors">
+            <p class="caption status-danger" *ngIf="userForm.controls['nom'].errors?.['required']">
+              Last Name is required.
+            </p>
+            <p class="caption status-danger"
+              *ngIf="userForm.controls['nom'].errors?.['minlength'] || userForm.controls['nom'].errors?.['maxlength']">
+              Last Name length error.
+            </p>
+          </ng-container>
+        </div>
+        <div class="form-group col-md-6">
+          <input [tabIndex]="3" nbInput fullWidth formControlName="email" placeholder="Email" fieldSize="large"
+            [status]="userForm.controls['email'].touched ? userForm.controls['email'].invalid  ? 'danger' : 'success' :'basic'">
+          <ng-container *ngIf="userForm.controls['email'].touched && userForm.controls['email'].errors">
+            <p class="caption status-danger" *ngIf="userForm.controls['email'].errors?.['required']">
+              Email is required.
+            </p>
+            <p class="caption status-danger" *ngIf="userForm.controls['email'].errors?.['pattern']">
+              Email is invalid.
+            </p>
+            <p class="caption status-danger"
+              *ngIf="!userForm.controls['email'].errors?.['pattern'] && (userForm.controls['email'].errors?.['minlength']|| userForm.controls['email'].errors?.['maxlength'])">
+              Email is invalid.
+            </p>
+          </ng-container>
+        </div>
+        <button nbButton status="primary" fullWidth size="large" [disabled]="!userForm.valid">
+          Submit
+        </button>
+      </form>
+    </nb-card-body>
+  </nb-card>
+</div>

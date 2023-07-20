@@ -1,0 +1,52 @@
+<h1 id="title" class="title">Signin</h1>
+<p class="sub-title">Hello! Use your email to login.</p>
+<form (ngSubmit)="login()" [formGroup]="loginForm">
+  <div class="form-control-group">
+    <input [tabIndex]="1" nbInput fullWidth formControlName="email" [placeholder]="'Email Address' "
+      fieldSize="large" autofocus
+      [status]="loginForm.controls['email'].touched ? loginForm.controls['email'].invalid  ? 'danger' : 'success' :'basic'">
+    <ng-container *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].errors">
+      <p class="caption status-danger" *ngIf="loginForm.controls['email'].errors?.['required']">
+        Email is required.
+      </p>
+      <p class="caption status-danger" *ngIf="loginForm.controls['email'].errors?.['pattern']">
+        Invalid Email.
+      </p>
+      <p class="caption status-danger"
+        *ngIf="!loginForm.controls['email'].errors?.['pattern'] && (loginForm.controls['email'].errors?.['minlength']|| loginForm.controls['email'].errors?.['maxlength'])">
+        Invalid Email.
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group">
+    <span class="label-with-link">
+      <a [tabIndex]="-1" class="forgot-password caption-2" routerLink="../forget-password">Forgot your password?</a>
+    </span>
+    <nb-form-field>
+      <button type="button" [tabIndex]="-1" nbSuffix nbButton ghost (click)="showPassword = !showPassword">
+        <nb-icon [icon]="showPassword ? 'eye' : 'eye-slash'">
+      </nb-icon>
+      </button>
+    <input autocomplete="off" [tabIndex]="2" nbInput fullWidth formControlName="password" [type]="showPassword?'text':'password'"
+      placeholder="Password" fieldSize="large"
+      [status]="loginForm.controls['password'].touched ? loginForm.controls['password'].invalid  ? 'danger' : 'success' :'basic'">
+    </nb-form-field>
+    <ng-container *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].errors">
+      <p class="caption status-danger" *ngIf="loginForm.controls['password'].errors?.['required']">
+        Password is required.
+      </p>
+      <p class="caption status-danger" *ngIf="loginForm.controls['password'].errors?.['whitespace']">
+        Invalid Password.
+      </p>
+      <p class="caption status-danger"
+        *ngIf="!loginForm.controls['password'].errors?.['whitespace'] && (loginForm.controls['password'].errors?.['minlength'] || loginForm.controls['password'].errors?.['maxlength'])">
+        Invalid Password.
+      </p>
+    </ng-container>
+  </div>
+
+  <button type="submit" [disabled]="!loginForm.valid" [tabIndex]="3" nbButton fullWidth status="primary" size="large"  >
+    Log In
+  </button>
+</form>

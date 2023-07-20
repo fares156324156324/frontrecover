@@ -1,0 +1,34 @@
+* {
+  box-shadow: none;
+
+  :not(.cropper) {
+    outline: none !important;
+  }
+
+  .pointer,
+  .pointer * {
+    cursor: pointer !important;
+  }
+
+  .btn[disabled],
+  .btn[disabled] * {
+    cursor: not-allowed !important;
+  }
+
+}
+
+nb-dialog-container {
+  width: 100%;
+}
+
+button nb-icon {
+  height: auto !important;
+}
+
+nb-card {
+  max-height: 80vh;
+}
+
+nb-card.full {
+  max-height: max-content;
+}
