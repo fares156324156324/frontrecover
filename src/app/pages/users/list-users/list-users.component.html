@@ -57,7 +57,7 @@
               </td>
             </ng-container>
             <td class="buttons">
-              <ng-container *ngIf="currentUser.id !== row.id">
+              <ng-container *ngIf="currentUser?.id !== row.id">
                 <button nbButton outline status="info" size="small" (click)="onEditTableRow(index)" class="pointer m-1"
                 title="Edit">
                 <nb-icon icon="edit"></nb-icon>
