@@ -2,11 +2,6 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
-            steps {
-                git 'http://192.168.127.137:8089/root/orange-kpi-front'
-            }
-        }
         
         stage('Install Dependencies') {
             steps {
