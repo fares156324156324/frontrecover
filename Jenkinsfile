@@ -34,12 +34,12 @@ withCredentials([string(credentialsId: 'DOCKERHUB_JENKINS', variable: 'dockerpwd
       }
     }
     
-        stage('Build') {
-            steps {
-                sh 'ng build --prod'
-            }
-        }
-        
+        stage('Deploy') {
+      steps {
+        sh 'export PATH=$PATH:/usr/local/bin/docker-compose'
+        sh 'docker-compose -f docker-compose.yml up -d'
+      }
+    }
         
     }
   
