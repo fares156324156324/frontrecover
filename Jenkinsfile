@@ -10,7 +10,7 @@ pipeline {
             steps {
 
                 sh 'npm install -g @angular/cli'
-                
+                sh ' npm install -g npm@9.8.1'
                 sh 'npm install'
             }
         }
