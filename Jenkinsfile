@@ -1,6 +1,7 @@
 pipeline {
     agent any
-    
+            NodeJS 'NodeJs'
+
     stages {
         
         stage('Install Dependencies') {
