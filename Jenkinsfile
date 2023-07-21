@@ -8,6 +8,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
+                sh 'node -v'
 
                 sh 'npm install -g @angular/cli'
                 sh ' npm install -g npm@9.8.1'
