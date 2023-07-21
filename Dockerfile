@@ -1,5 +1,5 @@
 # Use a base image with Node.js installed
-FROM node:14 AS build
+FROM node:18 AS build
 
 # Set the working directory within the container
 WORKDIR /usr/src/app
@@ -9,6 +9,10 @@ COPY package*.json ./
 
 # Install the project dependencies
 RUN npm install
+
+# Update Node.js to the latest LTS version (at least v16.13)
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get update && apt-get install -y nodejs
 
 # Copy the rest of the application code to the container
 COPY . .
