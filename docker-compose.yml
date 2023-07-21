@@ -24,7 +24,7 @@ services:
       - default
 
   angularapp:
-    image: fares156324/angularapp:latest  # Replace "your_angular_image" with your Angular app's image name and version
+    image: fares123456/angularapp:latest  # Replace "your_angular_image" with your Angular app's image name and version
     container_name: angularapp
     ports:
       - 4200:4200  
