@@ -1,12 +1,11 @@
 pipeline {
     agent any
-            NodeJS 'NodeJs'
-
+        tools{ NodeJS 'NodeJs'
+        }
     stages {
         
         stage('Install Dependencies') {
             steps {
-                tool 'NodeJS' 
 
                 sh 'npm install -g @angular/cli'
                 
