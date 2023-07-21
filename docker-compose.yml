@@ -23,21 +23,16 @@ services:
     networks:
       - default
 
-  AngularApp:
-    build:
-      context: ./path/to/your/angular/app
-      dockerfile: Dockerfile
+  angularapp:
+    image: fares156324/angularapp:latest  # Replace "your_angular_image" with your Angular app's image name and version
     container_name: angularapp
     ports:
-      - 4200:4200
+      - 4200:4200  
     networks:
       - default
-    depends_on:
-      - Spring
-
-networks:
-  default:
-    driver: bridge
 
 volumes:
   mongo-data:
+
+networks:
+  default:
