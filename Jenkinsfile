@@ -14,6 +14,12 @@ pipeline {
                 sh 'npm install'
             }
         }
+
+         stage('Build image') {
+      steps {
+        sh ' docker build -t fares123456/angularapp:latest .'
+      }
+    }
         stage ('Login'){
         steps{
             script{
