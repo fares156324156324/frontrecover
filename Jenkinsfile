@@ -27,7 +27,7 @@ withCredentials([string(credentialsId: 'DOCKERHUB_JENKINS', variable: 'dockerpwd
        sh 'docker login -u fares123456 -p ${dockerpwd} '
     }
   }}
-}
+}//
  stage('Push image') {
       steps {
         sh ' docker push fares123456/angularapp:latest'
