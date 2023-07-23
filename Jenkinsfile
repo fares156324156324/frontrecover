@@ -37,7 +37,7 @@ withCredentials([string(credentialsId: 'DOCKERHUB_JENKINS', variable: 'dockerpwd
     
         stage('Run the app') {
       steps {
-          sh 'npm run build' // Build the Angular app
+        sh 'docker-compose -f docker-compose.yml up -d'
       }
     }
         
