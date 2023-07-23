@@ -1,5 +1,9 @@
-<h1 id="title" class="title">Signin</h1>
-<p class="sub-title">Hello! Use your email to login.</p>
+<div class="container">
+  <!-- Add logo above the Sign in heading -->
+  <img src="assets/logo.png" alt="Logo" class="logo">
+
+  <h1 id="title" class="title">Sign in</h1>
+</div>
 <form (ngSubmit)="login()" [formGroup]="loginForm">
   <div class="form-control-group">
     <input [tabIndex]="1" nbInput fullWidth formControlName="email" [placeholder]="'Email Address' "

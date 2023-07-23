@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UsersComponent, DashboardComponent } from '.';
 import { PagesComponent } from './pages.component';
+import { ForecastingComponent } from '../IA/forecasting/forecasting.component';
+import { KPIComponent } from '../IA/kpi/kpi.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,14 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+      },
+      {
+        path: 'forecasting',
+        component: ForecastingComponent,
+      },
+      {
+        path: 'KPI',
+        component: KPIComponent,
       },
       {
         path: '',

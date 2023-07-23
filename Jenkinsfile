@@ -8,10 +8,7 @@ pipeline {
         
         stage('Install Dependencies') {
             steps {
-                sh 'node -v'
 
-                sh 'npm install -g @angular/cli'
-                sh ' npm install -g npm@9.8.1'
                 sh 'npm install --f'
             }
         }
@@ -35,10 +32,9 @@ withCredentials([string(credentialsId: 'DOCKERHUB_JENKINS', variable: 'dockerpwd
       }
     }
     
-        stage('Deploy') {
+        stage('Run the app') {
       steps {
-        sh 'export PATH=$PATH:/usr/local/bin/docker-compose'
-        sh 'docker-compose -f docker-compose.yml up -d'
+          sh 'npm run build' // Build the Angular app
       }
     }
         

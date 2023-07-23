@@ -3,7 +3,10 @@
     <a (click)="toggleSidebar()" class="sidebar-toggle">
       <nb-icon icon="list-outline"></nb-icon>
     </a>
-    <a class="logo" (click)="navigateHome()">SCHOOLAPP</a>
+    <a class="logo" (click)="navigateHome()">
+      <!-- Replace the text with the logo image -->
+      <img src="assets/logo.png" alt="Logo">
+    </a>
   </div>
 </div>
 
@@ -11,8 +14,7 @@
   <nb-actions size="small">
     <nb-action class="control-item" icon="bell"></nb-action>
     <nb-action  class="user-action">
-      <nb-user  [nbContextMenu]="menu[0].children!" nbContextMenuTag="user-context-menu" nbContextMenuTrigger="click"
-        >
+      <nb-user  [nbContextMenu]="menu[0].children!" nbContextMenuTag="user-context-menu" nbContextMenuTrigger="click">
       </nb-user>
     </nb-action>
   </nb-actions>

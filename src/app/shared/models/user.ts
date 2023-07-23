@@ -4,15 +4,18 @@ export class User {
   public id?: string;
   public username?: string;
   public email: string;
-
-  constructor (input: any) {
+  public role?: string;
+  public groupName?: string;   
+  
+  constructor(input: any) {
     if (input.id) {
       this.id = input.id;
     }
 
     this.email = input.email;
     this.username = input.username;
-
+    this.role = input.role;
+    this.groupName = input.groupName;
   }
 
   getFullName() {

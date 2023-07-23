@@ -1,0 +1,36 @@
+.forecasting-container {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    width: 500px;
+    margin-bottom: 20px; /* Add margin at the bottom to create distance */
+  }
+  
+  .chart-container {
+    margin-top: 80px;
+    width: 80%;
+    height: 80%;
+    align-items: center;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px; /* Add margin at the bottom to create distance */
+  }
+  
+  .kpi-container {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    width: 350px;
+    margin-left: 20px;
+    margin-bottom: 20px; /* Add margin at the bottom to create distance */
+  }
+  
+  .container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 20px;
+    align-items: center;
+  }
+  

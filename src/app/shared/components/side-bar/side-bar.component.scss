@@ -1,9 +1,12 @@
-@import '../../styles/themes.scss';
-@import '../../../../../node_modules/bootstrap/scss/mixins/breakpoints';
-@import '../../../../../node_modules/@nebular/theme/styles/global/breakpoints';
-
-@include nb-install-component() {
-  .menu-sidebar ::ng-deep .scrollable {
-    padding-top: nb-theme(layout-padding-top);
-  }
+/* Style for the logo container */
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70px; /* Adjust the height of the logo container as needed */
 }
+
+.nb-menu .menu-item {
+  font-size: 50px; /* Set the desired font size for menu items */
+}
+

@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="kpi-container">
+      <h4>KPI:</h4>
+      <nb-select fullWidth fieldSize="large" placeholder="Select KPI" [(ngModel)]="selectedKpi" class="custom-input-KPI">
+        <nb-option value="kpi1">3G</nb-option>
+        <nb-option value="kpi2">2G</nb-option>
+        <!-- Add more options if needed -->
+      </nb-select>
+    </div>
+  
+    <div class="forecasting-container">
+        <h4>Forecasting days:</h4>
+        <input type="number" [(ngModel)]="forecastingDays" class="custom-input">
+        <button (click)="onForecast()">Forecast</button> <!-- Add the Forecast button here -->
+      </div>
+    </div>
+    <div class="chart-container">
+      <canvas id="predictionChart"></canvas>
+    </div>

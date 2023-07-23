@@ -7,19 +7,13 @@ export const sideBarMenuItems: NbMenuItem[] = [
     link: '/dashboard',
     home: true
   },
-  {
-    title: 'Users',
-    icon: 'users',
-    link: '/users',
-  },
-  {
-    title: 'KPI 1',
+  
+  {title: 'Forecasting Radio ',
     icon: 'file-plus',
-    link: '/users',
-  },
+    link: '/forecasting', },
   {
-    title: 'KPI 2',
+    title: 'KPI Radio',
     icon: 'books',
-    link: '/users',
+    link: '/kpi',
   },
 ];

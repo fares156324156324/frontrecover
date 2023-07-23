@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForecastingComponent } from './IA/forecasting/forecasting.component';
 
 const routes: Routes = [
   {
@@ -10,6 +11,10 @@ const routes: Routes = [
     path: '',
     loadChildren: () =>
       import('./pages/pages.module').then((p) => p.PagesModule),
+  },
+  {
+    path: 'forecasting',
+    component: ForecastingComponent,
   },
 ];
 

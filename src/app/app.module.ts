@@ -17,6 +17,8 @@ import {
   NbToastrModule,
   NbToastrService,
 } from '@nebular/theme';
+import { ForecastingComponent } from './IA/forecasting/forecasting.component';
+import { KPIComponent } from './IA/kpi/kpi.component';
 
 const MODULES = [
   BrowserModule,
@@ -35,7 +37,7 @@ const MODULES = [
 ];
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ForecastingComponent, KPIComponent],
   imports: [...MODULES],
   providers: [
     {

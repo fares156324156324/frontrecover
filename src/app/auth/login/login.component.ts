@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
       this.authService
         .login(this.getFormValue())
         .then((response) => {
+          console.log(response)
           if (response.body.accessToken) {
             this.storageService.setAccessToken(
               response.body.accessToken
