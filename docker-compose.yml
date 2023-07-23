@@ -4,7 +4,7 @@ services:
     image: fares123456/angularapp:latest
     container_name: angularapp
     ports:
-      - 8083:4200
+      - 8084:4200
     networks:
       - my_network
 
