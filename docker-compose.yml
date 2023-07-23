@@ -1,38 +1,13 @@
 version: "3"
 services:
-  springdb:
-    image: mongo:latest
-    container_name: "springdbb"
-    ports:
-      - 27017:27017
-    networks:
-      - default
-    volumes:
-      - mongo-data:/data/db
-      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-
-  Spring:
-    image: fares123456/springbootapp:latest
-    container_name: springbootapp
-    ports:
-      - 8099:8081
-    links:
-      - springdb
-    depends_on:
-      - springdb
-    networks:
-      - default
-
   angularapp:
-    image: fares123456/angularapp:latest  # Replace "your_angular_image" with your Angular app's image name and version
+    image: fares123456/angularapp:latest
     container_name: angularapp
     ports:
-      - 4200:4200  
+      - 4200:4200
     networks:
-      - default
-
-volumes:
-  mongo-data:
+      - my_network
 
 networks:
-  default:
+  my_network:
+    external: true
